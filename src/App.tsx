@@ -494,7 +494,7 @@ const Genetics = () => {
     <section id="genetics" className="py-32 md:py-48 px-8 bg-ink text-white overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-full opacity-10">
         <img 
-          src="https://images.pexels.com/photos/2123383/pexels-photo-2123383.jpeg?auto=compress&cs=tinysrgb&w=1920&grayscale=1" 
+          src="https://www.dropbox.com/scl/fi/ddmjzd4a6hr49lbn6bl4h/branding-compressed.jpg?rlkey=msuwq70cj6767gpf06d9ig0jt&st=b9u1nepj&raw=1" 
           alt="Genetics Background" 
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
