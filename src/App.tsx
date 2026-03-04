@@ -546,7 +546,7 @@ const Genetics = () => {
           >
             <div className="aspect-[4/5] image-zoom-container opulent-shadow border border-white/10">
               <img 
-                src="https://images.pexels.com/photos/2123382/pexels-photo-2123382.jpeg?auto=compress&cs=tinysrgb&w=1000" 
+                src="https://www.dropbox.com/scl/fi/zx0e3syxcfdkg6bbdhzi8/main-3-compressed.jpg?rlkey=aykao1kmvcu2wgnieqcx7efy4&st=ukaxr0uk&raw=1" 
                 alt="Elite Stallion" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -569,13 +569,13 @@ const Horses = () => {
 
   const horses: Horse[] = [
     { 
-      name: "Midnight King", 
-      breed: "Purebred Arabian", 
-      image: "https://images.pexels.com/photos/161511/pexels-photo-161511.jpeg?auto=compress&cs=tinysrgb&w=800",
+      name: "Presencia Mater", 
+      breed: "Purebred Spanish", 
+      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=zm615i7h&raw=1",
       age: "6 Years",
       gender: "Stallion",
       height: "15.1 HH",
-      description: "A majestic stallion with a fiery spirit and impeccable Arabian conformation. Midnight King is a proven champion in endurance and halter.",
+      description: "A majestic stallion with a fiery spirit and impeccable Spanish conformation. Presencia is a proven champion in endurance and halter.",
       pedigree: {
         sire: "Desert Storm",
         dam: "Moonlit Rose",
@@ -687,7 +687,7 @@ const HorsesPage = () => {
     { 
       name: "Midnight King", 
       breed: "Purebred Arabian", 
-      image: "https://images.pexels.com/photos/161511/pexels-photo-161511.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=zm615i7h&raw=1",
       age: "6 Years",
       gender: "Stallion",
       height: "15.1 HH",
