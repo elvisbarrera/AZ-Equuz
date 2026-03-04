@@ -252,12 +252,7 @@ const About = () => {
   });
 
   const y1 = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
-  const y2 = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const y3 = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
-
   const smoothY1 = useSpring(y1, { stiffness: 100, damping: 30 });
-  const smoothY2 = useSpring(y2, { stiffness: 100, damping: 30 });
-  const smoothY3 = useSpring(y3, { stiffness: 100, damping: 30 });
 
   return (
     <section id="estate" ref={containerRef} className="py-32 md:py-48 px-8 bg-cream relative overflow-hidden">
@@ -296,35 +291,30 @@ const About = () => {
           </div>
           
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-12 gap-10">
-              <motion.div 
-                {...fadeIn}
-                style={{ y: smoothY1 }}
-                transition={{ ...fadeIn.transition, delay: 0.2 }}
-                className="col-span-7 image-zoom-container aspect-[4/5] opulent-shadow"
-              >
+            <motion.div 
+              {...fadeIn}
+              style={{ y: smoothY1 }}
+              transition={{ ...fadeIn.transition, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5] image-zoom-container opulent-shadow overflow-hidden group">
                 <img 
                   src="https://www.dropbox.com/scl/fi/h95r6ezcy5ozqpu555nu1/main-2-compressed.jpg?rlkey=e69bubon4fwyhpndt2ja1uhio&st=6c8yopjt&raw=1" 
                   alt="AZ Equuz Heritage" 
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
-              </motion.div>
-              <motion.div 
-                {...fadeIn}
-                transition={{ ...fadeIn.transition, delay: 0.4 }}
-                className="col-span-5"
-              >
-                <motion.div style={{ y: smoothY2 }} className="aspect-[2/3] image-zoom-container opulent-shadow">
-                  <img 
-                    src="https://www.dropbox.com/scl/fi/zx0e3syxcfdkg6bbdhzi8/main-3-compressed.jpg?rlkey=aykao1kmvcu2wgnieqcx7efy4&st=lsrah1cl&raw=1" 
-                    alt="Elite Horse Detail" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
-              </motion.div>
-            </div>
+                {/* Elegant Overlay Detail */}
+                <div className="absolute inset-0 border-[20px] border-white/10 pointer-events-none"></div>
+                <div className="absolute bottom-10 left-10 z-20">
+                  <span className="text-white/40 text-[8px] uppercase tracking-[1em] font-light">Est. 1994</span>
+                </div>
+              </div>
+              
+              {/* Decorative Floating Element */}
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 border border-gold/20 -z-10 hidden lg:block"></div>
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-gold/5 -z-10 hidden lg:block"></div>
+            </motion.div>
           </div>
         </div>
       </div>
