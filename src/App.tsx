@@ -4,18 +4,20 @@
  */
 
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "motion/react";
-import { 
-  Instagram, 
-  Facebook, 
-  Twitter, 
-  MapPin, 
-  Mail, 
-  Phone, 
+import {
+  Instagram,
+  Facebook,
+  Twitter,
+  MapPin,
+  Mail,
+  Phone,
   ChevronRight,
+  ChevronLeft,
   Menu,
   X,
   ArrowRight,
-  Info
+  Info,
+  Images
 } from "lucide-react";
 import { useState, useEffect, MouseEvent, useRef } from "react";
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
@@ -60,8 +62,9 @@ const Header = () => {
     { name: "Home", href: "/", onClick: handleHomeClick },
     { name: "The Estate", href: isHomePage ? "#estate" : "/#estate" },
     { name: "Our Horses", href: isHomePage ? "#horses" : "/#horses" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Genetics", href: isHomePage ? "#genetics" : "/#genetics" },
-    { name: "Shows", href: isHomePage ? "#shows" : "/#shows" },
+    { name: "Bloodlines", href: isHomePage ? "#bloodlines" : "/#bloodlines" },
     { name: "Contact", href: isHomePage ? "#contact" : "/#contact" }
   ];
 
@@ -286,6 +289,22 @@ const About = () => {
                   <span className="block text-3xl font-serif text-ink mb-1">24/7</span>
                   <span className="block text-[10px] uppercase tracking-widest text-gold font-bold">Elite Care</span>
                 </div>
+              </div>
+
+              <div className="mt-12">
+                <Link to="/gallery">
+                  <motion.button
+                    whileHover={{ x: 6 }}
+                    transition={{ duration: 0.3 }}
+                    className="group flex items-center gap-4 text-ink"
+                  >
+                    <span className="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-colors duration-300">
+                      <Images size={16} className="text-gold group-hover:text-ink transition-colors duration-300" />
+                    </span>
+                    <span className="text-[11px] uppercase tracking-[0.4em] font-bold">Visit Our Gallery</span>
+                    <ArrowRight size={14} className="text-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           </div>
@@ -906,58 +925,283 @@ const HomePage = () => {
       <About />
       <Horses />
       <Genetics />
-      <Shows />
+      <Bloodlines />
     </>
   );
 };
 
-const Shows = () => {
-  const events = [
-    { date: "MAR 15", time: "10:00 AM", name: "Spring Arabian Showcase", location: "Main Arena" },
-    { date: "APR 02", time: "02:00 PM", name: "Texas Heritage Exhibition", location: "West Paddock" },
-    { date: "MAY 12", time: "11:30 AM", name: "Reign Valley Invitational", location: "Grand Stadium" },
-    { date: "JUN 20", time: "06:00 PM", name: "Sunset Equine Gala", location: "Riverside Arena" }
+const Bloodlines = () => {
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  const horses = [
+    {
+      name: "Oligarca", gender: "Stallion", birthDate: "16 Apr 2019", coat: "Torda (Grey)",
+      ueln: "724015190348252", igg: "103.42", offspringCount: 0, offspring: [],
+      image: "https://images.pexels.com/photos/1996335/pexels-photo-1996335.jpeg?auto=compress&cs=tinysrgb&w=800",
+      registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?CEJ=VY3rRW2aO1IG905XAp2deQ==",
+      description: "A bold P.R.E. stallion of Torda coat bred by Mater Christi. Carries deep bloodlines from three of Spain's most prestigious yeguadas with a strong Genetic Index of 103.42.",
+      pedigree: {
+        sire: { label: "Sire", value: "—", note: "Mater Christi / Yeguada Vilaire lineage" },
+        dam:  { label: "Dam", value: "—", note: "Ramón Folgarolas Genero / Mater Christi" },
+        grandSire1: "Yeguada Vilaire lineage",
+        grandDam1:  "Ramón Folgarolas Genero lineage",
+        grandSire2: "Rafael Ayala Muñoz lineage",
+        grandDam2:  "Hros. Salvador Guardiola Fantoni / Francisco Míguez Pintor",
+      }
+    },
+    {
+      name: "Presencia", gender: "Mare", birthDate: "12 Feb 2020", coat: "Torda (Grey)",
+      ueln: "724015200357033", igg: null, offspringCount: 0, offspring: [],
+      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=zm615i7h&raw=1",
+      registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?ID=2bvfgWbPlPA=",
+      description: "A young P.R.E. mare of exquisite Torda coat bred by Mater Christi. She carries fully documented bloodlines from Ferrer Rovira S.L. and Miguel Granda Losada — two pillars of modern Spanish breeding.",
+      pedigree: {
+        sire: { label: "Sire", value: "Sageras y Alcazarén S.A. / Ferrer Rovira S.L.", note: "Reproductor Calificado" },
+        dam:  { label: "Dam", value: "Miguel Granda Losada", note: "ANCCE registered" },
+        grandSire1: "Hohmann & Kuppens / CMCC de Ávila",
+        grandDam1:  "Yeguada Vilaire / Yeguada Marín García",
+        grandSire2: "Los Retamales S.C. / CMCC de Jerez",
+        grandDam2:  "Yeguada Ferrero S.L. / Ramón Folgarolas",
+      }
+    },
+    {
+      name: "Ordago", gender: "Stallion", birthDate: "25 Mar 2019", coat: "Torda (Grey)",
+      ueln: "724015190347862", igg: "116.36", offspringCount: 22,
+      offspring: ["Aviador Fam", "Caramelo de Mimac", "Lunaria de Gredos III", "Almanzor de Borge", "Alba de Borge", "Al Andalus de Borge", "Tamiz Mater", "Tesón Mater", "Tinga Mater", "Vendetta Mater"],
+      image: "https://images.pexels.com/photos/2088210/pexels-photo-2088210.jpeg?auto=compress&cs=tinysrgb&w=800",
+      registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?CEJ=VY3rRW2aO1IJOknx3ZsjWQ==",
+      description: "The crown jewel of the collection. Joven Reproductor Recomendado with IGG 116.36 — one of the highest indices in his generation — and 22 registered offspring cementing his status as a premier P.R.E. sire.",
+      pedigree: {
+        sire: { label: "Sire", value: "Joven Reproductor Recomendado", note: "Mater Christi stud" },
+        dam:  { label: "Dam", value: "Reproductor Calificado", note: "Ramón Folgarolas Genero" },
+        grandSire1: "Mater Christi lineage (paternal)",
+        grandDam1:  "Mater Christi lineage (paternal)",
+        grandSire2: "Ramón Folgarolas Genero lineage",
+        grandDam2:  "Mater Christi lineage (maternal)",
+      }
+    },
+    {
+      name: "Osadia", gender: "Mare", birthDate: "06 Mar 2019", coat: "Torda (Grey)",
+      ueln: "724015190347868", igg: "103.42", offspringCount: 2,
+      offspring: ["Taranta Mater", "Vuelo Mater"],
+      image: "https://www.dropbox.com/scl/fi/zx0e3syxcfdkg6bbdhzi8/main-3-compressed.jpg?rlkey=aykao1kmvcu2wgnieqcx7efy4&st=ukaxr0uk&raw=1",
+      registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?CEJ=VY3rRW2aO1ILhXU+qrlXRg==",
+      description: "A bold and elegant mare sired by the celebrated Juramento Mater. With IGG 103.42 and two registered offspring — Taranta Mater (2023) and Vuelo Mater (2024) — she is building a legacy of her own.",
+      pedigree: {
+        sire: { label: "Sire", value: "Juramento Mater", note: "Champion P.R.E. sire" },
+        dam:  { label: "Dam", value: "—", note: "Hros. Salvador Guardiola Fantoni lineage" },
+        grandSire1: "Yeguada Vilaire lineage",
+        grandDam1:  "Rafael Ayala Muñoz lineage",
+        grandSire2: "Hros. Salvador Guardiola Fantoni lineage",
+        grandDam2:  "—",
+      }
+    },
+  ];
+
+  const h = horses[activeIdx];
+
+  const lineageRows = [
+    { section: "Paternal Line", sideLabel: "Sire", sideValue: h.pedigree.sire.value, sideNote: h.pedigree.sire.note, gs: h.pedigree.grandSire1, gd: h.pedigree.grandDam1 },
+    { section: "Maternal Line", sideLabel: "Dam", sideValue: h.pedigree.dam.value, sideNote: h.pedigree.dam.note, gs: h.pedigree.grandSire2, gd: h.pedigree.grandDam2 },
   ];
 
   return (
-    <section id="shows" className="py-32 md:py-48 px-8 bg-cream border-y border-ink/5">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-24">
-          <motion.div {...fadeIn}>
-            <span className="text-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-6 block">Events Calendar</span>
-            <h2 className="text-5xl md:text-6xl text-ink font-serif mb-8">Upcoming Showcases</h2>
-            <div className="w-24 h-[1px] bg-gold mx-auto"></div>
-          </motion.div>
-        </div>
+    <section id="bloodlines" className="py-32 md:py-48 px-8 bg-ink text-white relative overflow-hidden">
+      {/* Background texture */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 55px, rgba(255,255,255,0.5) 55px, rgba(255,255,255,0.5) 56px)" }} />
+        <div className="absolute top-0 right-0 w-[50vw] h-[50vw] rounded-full border border-gold/[0.04] translate-x-1/3 -translate-y-1/3" />
+      </div>
 
-        <div className="space-y-0">
-          {events.map((event, idx) => (
-            <motion.div 
-              key={idx}
-              {...fadeIn}
-              transition={{ ...fadeIn.transition, delay: idx * 0.1 }}
-              className="group flex flex-col md:flex-row items-center justify-between py-12 border-b border-ink/10 last:border-0 hover:bg-white/40 px-8 transition-all duration-500 rounded-lg"
+      <div className="max-w-[1400px] mx-auto relative z-10">
+
+        {/* Section header */}
+        <motion.div {...fadeIn} className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-20">
+          <div>
+            <span className="text-gold text-[10px] uppercase tracking-[0.5em] font-bold mb-6 block">Genealogy · ANCCE Registry</span>
+            <h2 className="text-5xl md:text-6xl font-serif leading-[1.05]">
+              The <br />
+              <span className="italic font-display text-gold">Bloodlines</span>
+            </h2>
+          </div>
+          <p className="text-white/40 font-light text-base max-w-sm leading-relaxed">
+            Full registry data sourced directly from the LGANCCE official database. Each entry is verified against the Pura Raza Española studbook.
+          </p>
+        </motion.div>
+
+        {/* Horse selector */}
+        <motion.div {...fadeIn} className="flex gap-3 mb-14 overflow-x-auto pb-1 -mx-2 px-2">
+          {horses.map((horse, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIdx(i)}
+              className={`flex items-center gap-3 pl-2 pr-6 py-2 border transition-all duration-400 shrink-0 ${
+                activeIdx === i
+                  ? "border-gold bg-gold/[0.08]"
+                  : "border-white/10 hover:border-white/25"
+              }`}
             >
-              <div className="flex flex-col md:flex-row items-center md:space-x-16 mb-8 md:mb-0 text-center md:text-left">
-                <div className="mb-4 md:mb-0">
-                  <span className="block text-4xl font-serif text-ink mb-1">{event.date.split(' ')[1]}</span>
-                  <span className="block text-[10px] uppercase tracking-[0.3em] text-gold font-bold">{event.date.split(' ')[0]}</span>
+              <div className="w-12 h-12 overflow-hidden shrink-0">
+                <img src={horse.image} alt={horse.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              </div>
+              <div className="text-left">
+                <span className={`block text-sm font-serif leading-tight ${activeIdx === i ? "text-white" : "text-white/60"}`}>{horse.name}</span>
+                <span className="block text-[8px] uppercase tracking-widest text-gold/50 mt-0.5">{horse.gender} · {horse.birthDate?.slice(-4)}</span>
+              </div>
+              {activeIdx === i && <div className="w-1 h-1 rounded-full bg-gold ml-1" />}
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Main widget */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIdx}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-6 lg:gap-10"
+          >
+
+            {/* ── LEFT: Identity card ── */}
+            <div className="flex flex-col gap-4">
+              {/* Image */}
+              <div className="aspect-[3/4] overflow-hidden relative">
+                <img src={h.image} alt={h.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-5">
+                  <span className="block text-xs font-serif text-white">{h.name}</span>
+                  <span className="block text-[8px] uppercase tracking-widest text-gold/60">{h.gender} · Mater Christi</span>
                 </div>
-                <div>
-                  <h4 className="text-2xl md:text-3xl text-ink group-hover:text-gold transition-colors font-serif mb-2">{event.name}</h4>
-                  <div className="flex items-center justify-center md:justify-start space-x-4 text-[10px] text-ink/40 uppercase tracking-[0.2em] font-medium">
-                    <span>{event.time}</span>
-                    <span className="w-1 h-1 bg-gold rounded-full"></span>
-                    <span>{event.location}</span>
-                  </div>
+                {/* Corner accents */}
+                <div className="absolute top-3 left-3 w-5 h-5 border-t border-l border-gold/30" />
+                <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-gold/30" />
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-2">
+                <div className="border border-white/10 p-3">
+                  <span className="block text-[7px] uppercase tracking-widest text-white/30 mb-1">Born</span>
+                  <span className="text-sm text-white/70 font-light">{h.birthDate}</span>
+                </div>
+                <div className="border border-white/10 p-3">
+                  <span className="block text-[7px] uppercase tracking-widest text-white/30 mb-1">Coat</span>
+                  <span className="text-sm text-white/70 font-light">{h.coat}</span>
                 </div>
               </div>
-              <button className="w-full md:w-auto bg-ink text-white px-10 py-4 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-gold hover:text-ink transition-all duration-500 opulent-shadow">
-                RSVP / VIP Booking
-              </button>
-            </motion.div>
-          ))}
-        </div>
+
+              {h.ueln && (
+                <div className="border border-white/10 p-3 flex items-center justify-between">
+                  <span className="text-[7px] uppercase tracking-widest text-white/30">UELN</span>
+                  <span className="text-[10px] font-mono text-white/50">{h.ueln}</span>
+                </div>
+              )}
+
+              {h.igg && (
+                <div className="border border-gold/30 bg-gold/[0.06] p-4">
+                  <span className="block text-[7px] uppercase tracking-widest text-gold/70 mb-2">Global Genetic Index</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-serif text-gold">{h.igg}</span>
+                    <span className="text-[7px] uppercase tracking-widest text-white/25">IGG · Alta Fiabilidad</span>
+                  </div>
+                </div>
+              )}
+
+              <p className="text-white/40 font-light text-sm leading-relaxed border-l border-gold/20 pl-4 italic">
+                {h.description}
+              </p>
+            </div>
+
+            {/* ── RIGHT: Pedigree tree ── */}
+            <div className="flex flex-col gap-5">
+
+              {/* Tree header */}
+              <div className="flex items-center gap-4">
+                <span className="text-[9px] uppercase tracking-[0.45em] font-bold text-gold whitespace-nowrap">Purebred Lineage</span>
+                <div className="flex-1 h-px bg-white/10" />
+                <span className="text-[8px] uppercase tracking-widest text-white/25 whitespace-nowrap">P.R.E. · Spain</span>
+              </div>
+
+              {/* Lineage rows */}
+              {lineageRows.map((row, ri) => (
+                <div key={ri} className="border border-white/10 overflow-hidden">
+                  {/* Parent row */}
+                  <div className="flex items-stretch border-b border-white/10">
+                    {/* Gold bar */}
+                    <div className={`w-1 shrink-0 ${ri === 0 ? "bg-gold" : "bg-gold/40"}`} />
+                    <div className="flex-1 p-5">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <span className="block text-[8px] uppercase tracking-[0.4em] text-gold/60 mb-1.5">{row.sideLabel}</span>
+                          <span className={`block font-serif text-lg leading-snug ${row.sideValue === "—" ? "text-white/25 italic text-base" : "text-white"}`}>
+                            {row.sideValue === "—" ? "Not recorded" : row.sideValue}
+                          </span>
+                        </div>
+                        <span className="text-[8px] text-white/25 font-light text-right shrink-0 mt-1">{row.sideNote}</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Grandparent row */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.07]">
+                    {[
+                      { label: ri === 0 ? "Paternal Grandsire" : "Maternal Grandsire", value: row.gs },
+                      { label: ri === 0 ? "Paternal Granddam"  : "Maternal Granddam",  value: row.gd },
+                    ].map((gp, gi) => (
+                      <div key={gi} className="p-4 bg-white/[0.02]">
+                        <span className="block text-[7px] uppercase tracking-widest text-white/25 mb-2">{gp.label}</span>
+                        <span className={`text-sm font-serif leading-snug ${!gp.value || gp.value === "—" ? "text-white/20 italic" : "text-white/60"}`}>
+                          {!gp.value || gp.value === "—" ? "Not recorded" : gp.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              {/* Offspring */}
+              {h.offspring && h.offspring.length > 0 && (
+                <div className="border border-gold/20 bg-gold/[0.03] p-5">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="text-[9px] uppercase tracking-[0.45em] font-bold text-gold whitespace-nowrap">Registered Offspring</span>
+                    <div className="flex-1 h-px bg-gold/15" />
+                    <span className="text-[8px] border border-gold/25 text-gold/50 px-2 py-0.5">{h.offspringCount} total</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {h.offspring.map((name, ni) => (
+                      <span key={ni} className="text-[8px] uppercase tracking-widest text-white/50 border border-white/10 px-3 py-1.5 hover:border-gold/40 hover:text-white/80 transition-colors duration-300">
+                        {name}
+                      </span>
+                    ))}
+                    {h.offspringCount > h.offspring.length && (
+                      <span className="text-[8px] uppercase tracking-widest text-white/20 px-3 py-1.5 border border-white/5">
+                        +{h.offspringCount - h.offspring.length} more registered
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Registry link */}
+              {h.registryUrl && (
+                <a
+                  href={h.registryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between border border-white/10 p-4 hover:border-gold/40 hover:bg-gold/5 transition-all duration-400 group"
+                >
+                  <div>
+                    <span className="block text-[7px] uppercase tracking-widest text-white/25 mb-1">Official Source</span>
+                    <span className="text-sm text-white/50 group-hover:text-white/80 transition-colors font-light">
+                      LGANCCE · ANCCE Studbook Database
+                    </span>
+                  </div>
+                  <ArrowRight size={15} className="text-gold/40 group-hover:text-gold group-hover:translate-x-1 transition-all duration-300" />
+                </a>
+              )}
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
@@ -1043,70 +1287,353 @@ const Footer = () => {
 };
 
 const Loader = () => {
+  const cornerClasses = [
+    "top-8 left-8 border-t border-l",
+    "top-8 right-8 border-t border-r",
+    "bottom-8 left-8 border-b border-l",
+    "bottom-8 right-8 border-b border-r",
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ 
-        opacity: 0, 
-        transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } 
+      exit={{
+        opacity: 0,
+        scale: 0.99,
+        transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.1 }
       }}
-      className="fixed inset-0 z-[100] bg-emerald-950 flex flex-col items-center justify-center"
+      className="fixed inset-0 z-[100] bg-ink flex flex-col items-center justify-center overflow-hidden"
     >
+      {/* Horizontal rule grid — subtle texture */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 24 }).map((_, i) => (
+          <div key={i} className="w-full h-px bg-white/[0.025] mb-[56px]" />
+        ))}
+      </div>
+
+      {/* One-shot shimmer sweep */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center"
-      >
+        initial={{ x: "-110%" }}
+        animate={{ x: "210%" }}
+        transition={{ duration: 1.6, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-gold/[0.07] to-transparent -skew-x-12 pointer-events-none z-0"
+      />
+
+      {/* Corner brackets — draw in */}
+      {cornerClasses.map((cls, i) => (
         <motion.div
-          animate={{ 
-            scale: [1, 1.05, 1],
-            opacity: [0.8, 1, 0.8]
-          }}
-          transition={{ 
-            duration: 4, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-          className="mb-12"
+          key={i}
+          initial={{ width: 0, height: 0, opacity: 0 }}
+          animate={{ width: 56, height: 56, opacity: 0.45 }}
+          transition={{ duration: 0.9, delay: 0.1 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+          className={`absolute ${cls} border-gold`}
+        />
+      ))}
+
+      {/* Side vertical accents */}
+      <motion.div
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: 1 }}
+        transition={{ duration: 1.4, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-1/3 bg-gradient-to-b from-transparent via-gold/20 to-transparent origin-center"
+      />
+      <motion.div
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: 1 }}
+        transition={{ duration: 1.4, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-px h-1/3 bg-gradient-to-b from-transparent via-gold/20 to-transparent origin-center"
+      />
+
+      {/* ── Center composition ── */}
+      <div className="relative z-10 flex flex-col items-center">
+
+        {/* Eyebrow with extending lines */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="flex items-center gap-5 mb-10"
         >
-          <h1 className="text-4xl md:text-6xl font-serif tracking-[0.4em] uppercase text-gold">
-            AZ Equuz
-          </h1>
-          <div className="h-[1px] w-24 bg-gold/30 mx-auto mt-6"></div>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="w-14 h-px bg-gold/35 origin-right"
+          />
+          <span className="text-gold/55 text-[8px] uppercase tracking-[0.8em] font-bold whitespace-nowrap">
+            Mater Christi
+          </span>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="w-14 h-px bg-gold/35 origin-left"
+          />
         </motion.div>
 
-        <div className="flex justify-center gap-4">
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
-              animate={{
-                y: [0, -8, 0],
-                opacity: [0.2, 1, 0.2],
-              }}
-              transition={{
-                duration: 1,
-                repeat: Infinity,
-                delay: i * 0.2,
-                ease: "easeInOut",
-              }}
-              className="w-1.5 h-1.5 rounded-full bg-gold"
-            />
+        {/* "AZ" — curtain reveal from below */}
+        <div className="overflow-hidden leading-[0.85]">
+          <motion.div
+            initial={{ y: "105%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.1, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[clamp(80px,14vw,180px)] font-serif text-cream leading-none tracking-[0.04em]"
+          >
+            AZ
+          </motion.div>
+        </div>
+
+        {/* "Equuz" — curtain reveal, slight delay, gold italic */}
+        <div className="overflow-hidden leading-[0.85]">
+          <motion.div
+            initial={{ y: "105%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.1, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
+            className="text-[clamp(80px,14vw,180px)] font-serif italic text-gold leading-none tracking-[0.04em]"
+          >
+            Equuz
+          </motion.div>
+        </div>
+
+        {/* Gold divider — extends from center */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.1, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full max-w-sm h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent origin-center mt-10 mb-8"
+        />
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 0.3, y: 0 }}
+          transition={{ duration: 1, delay: 1.3 }}
+          className="text-cream text-[9px] uppercase tracking-[0.8em] font-light"
+        >
+          Reign Valley Ranch · San Antonio, Texas
+        </motion.p>
+      </div>
+
+      {/* Bottom progress line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-white/[0.06]">
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 2.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="h-full bg-gold origin-left"
+        />
+      </div>
+    </motion.div>
+  );
+};
+
+const galleryItems = [
+  { id: 1, src: "https://images.pexels.com/photos/1996335/pexels-photo-1996335.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Grey stallion in full gallop", caption: "Power in Motion", tag: "Stallions", cols: 2, rows: 2 },
+  { id: 2, src: "https://images.pexels.com/photos/2088210/pexels-photo-2088210.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "White Andalusian horse portrait", caption: "Andalusian Grace", tag: "Portraits", cols: 1, rows: 1 },
+  { id: 3, src: "https://images.pexels.com/photos/3916379/pexels-photo-3916379.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Dapple grey horse in field", caption: "Morning at the Estate", tag: "Estate", cols: 1, rows: 2 },
+  { id: 4, src: "https://images.pexels.com/photos/635499/pexels-photo-635499.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Horse at golden hour", caption: "Golden Hour", tag: "Portraits", cols: 1, rows: 1 },
+  { id: 5, src: "https://images.pexels.com/photos/1056251/pexels-photo-1056251.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Horse galloping in arena", caption: "Arena Spirit", tag: "Stallions", cols: 1, rows: 1 },
+  { id: 6, src: "https://images.pexels.com/photos/1135038/pexels-photo-1135038.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Horses in open pasture", caption: "Open Pastures", tag: "Estate", cols: 2, rows: 1 },
+  { id: 7, src: "https://images.pexels.com/photos/1369493/pexels-photo-1369493.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Elegant mare portrait", caption: "Elegance Defined", tag: "Mares", cols: 1, rows: 1 },
+  { id: 8, src: "https://images.pexels.com/photos/52500/horse-herd-fog-nature-52500.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Herd in morning fog", caption: "Dawn Herd", tag: "Estate", cols: 2, rows: 1 },
+  { id: 9, src: "https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "P.R.E. horse close up", caption: "Nobility", tag: "Portraits", cols: 1, rows: 2 },
+  { id: 10, src: "https://images.pexels.com/photos/1650750/pexels-photo-1650750.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "White horse in green field", caption: "Summer at Reign Valley", tag: "Estate", cols: 1, rows: 1 },
+  { id: 11, src: "https://images.pexels.com/photos/1559116/pexels-photo-1559116.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Close-up horse portrait", caption: "Soulful Gaze", tag: "Portraits", cols: 1, rows: 1 },
+  { id: 12, src: "https://images.pexels.com/photos/2123375/pexels-photo-2123375.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Two horses together", caption: "Companions", tag: "Mares", cols: 2, rows: 1 },
+];
+
+const TAGS = ["All", "Stallions", "Mares", "Portraits", "Estate"];
+
+const GalleryPage = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [activeTag, setActiveTag] = useState("All");
+
+  const filtered = activeTag === "All" ? galleryItems : galleryItems.filter(i => i.tag === activeTag);
+
+  const openLightbox = (index: number) => setSelectedIndex(index);
+  const closeLightbox = () => setSelectedIndex(null);
+  const prev = () => setSelectedIndex((i: number | null) => i !== null ? (i - 1 + filtered.length) % filtered.length : null);
+  const next = () => setSelectedIndex((i: number | null) => i !== null ? (i + 1) % filtered.length : null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (selectedIndex === null) return;
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selectedIndex, filtered.length]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.8 }}
+      className="min-h-screen bg-ink"
+    >
+      {/* Hero */}
+      <div className="relative h-[55vh] flex items-end pb-20 px-8 md:px-16 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.pexels.com/photos/1996335/pexels-photo-1996335.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            alt="Gallery hero"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/20" />
+        </div>
+        <div className="relative z-10 max-w-[1400px] mx-auto w-full">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-gold text-[10px] uppercase tracking-[0.6em] font-bold mb-4 block"
+          >
+            Mater Christi · Reign Valley Ranch
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="text-6xl md:text-8xl lg:text-9xl font-serif text-cream leading-none"
+          >
+            The <span className="italic font-display text-gold">Gallery</span>
+          </motion.h1>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-6 h-px w-32 bg-gold origin-left"
+          />
+        </div>
+      </div>
+
+      {/* Filter Tags */}
+      <div className="px-8 md:px-16 pt-14 pb-10 max-w-[1400px] mx-auto">
+        <div className="flex flex-wrap gap-3">
+          {TAGS.map((tag, i) => (
+            <motion.button
+              key={tag}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * i, duration: 0.5 }}
+              onClick={() => setActiveTag(tag)}
+              className={`px-6 py-2 text-[10px] uppercase tracking-[0.4em] font-bold border transition-all duration-300 ${
+                activeTag === tag
+                  ? "bg-gold text-ink border-gold"
+                  : "bg-transparent text-cream/50 border-cream/20 hover:border-gold/60 hover:text-cream"
+              }`}
+            >
+              {tag}
+            </motion.button>
           ))}
         </div>
-      </motion.div>
-      
-      {/* Decorative corners */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.1 }}
-        className="absolute top-12 left-12 w-24 h-24 border-t border-l border-gold"
-      />
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.1 }}
-        className="absolute bottom-12 right-12 w-24 h-24 border-b border-r border-gold"
-      />
+      </div>
+
+      {/* Masonry Grid */}
+      <div className="px-8 md:px-16 pb-32 max-w-[1400px] mx-auto">
+        <motion.div
+          layout
+          className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 auto-rows-[240px]"
+        >
+          <AnimatePresence mode="popLayout">
+            {filtered.map((item, index) => (
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.6, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className={`relative overflow-hidden cursor-pointer group ${
+                  item.cols === 2 ? "col-span-2" : "col-span-1"
+                } ${
+                  item.rows === 2 ? "row-span-2" : "row-span-1"
+                }`}
+                onClick={() => openLightbox(index)}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/50 transition-colors duration-500" />
+                <div className="absolute inset-0 flex flex-col justify-end p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <span className="text-gold text-[9px] uppercase tracking-[0.5em] font-bold mb-1">{item.tag}</span>
+                  <span className="text-cream text-lg font-serif">{item.caption}</span>
+                </div>
+                {/* Corner accent */}
+                <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-gold/0 group-hover:border-gold/60 transition-colors duration-500" />
+                <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-gold/0 group-hover:border-gold/60 transition-colors duration-500" />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {selectedIndex !== null && filtered[selectedIndex] && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-ink/95 backdrop-blur-xl"
+            onClick={closeLightbox}
+          >
+            {/* Image container */}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="relative max-w-5xl max-h-[85vh] mx-8"
+              onClick={(e: MouseEvent) => e.stopPropagation()}
+            >
+              <img
+                src={filtered[selectedIndex].src}
+                alt={filtered[selectedIndex].alt}
+                className="max-h-[80vh] max-w-full object-contain opulent-shadow"
+              />
+              {/* Caption */}
+              <div className="mt-6 flex items-center justify-between">
+                <div>
+                  <span className="text-gold text-[9px] uppercase tracking-[0.5em] font-bold block mb-1">{filtered[selectedIndex].tag}</span>
+                  <span className="text-cream font-serif text-xl">{filtered[selectedIndex].caption}</span>
+                </div>
+                <span className="text-cream/30 text-[11px] uppercase tracking-widest">{selectedIndex + 1} / {filtered.length}</span>
+              </div>
+              {/* Border accents */}
+              <div className="absolute -top-2 -left-2 w-8 h-8 border-t border-l border-gold/30 pointer-events-none" />
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b border-r border-gold/30 pointer-events-none" />
+            </motion.div>
+
+            {/* Controls */}
+            <button
+              onClick={(e: MouseEvent) => { e.stopPropagation(); prev(); }}
+              className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-gold/60 transition-colors duration-300"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={(e: MouseEvent) => { e.stopPropagation(); next(); }}
+              className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-gold/60 transition-colors duration-300"
+            >
+              <ChevronRight size={20} />
+            </button>
+            <button
+              onClick={closeLightbox}
+              className="absolute top-6 right-6 w-10 h-10 border border-cream/20 flex items-center justify-center text-cream/60 hover:text-cream hover:border-gold/60 transition-colors duration-300"
+            >
+              <X size={16} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
@@ -1134,6 +1661,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/horses" element={<HorsesPage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
           </Routes>
         </main>
         <Footer />
