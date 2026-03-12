@@ -385,27 +385,27 @@ const HorseModal = ({ horse, onClose }: { horse: Horse | null, onClose: () => vo
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative bg-cream w-full max-w-6xl max-h-[90vh] opulent-shadow rounded-sm flex flex-col lg:flex-row overflow-hidden"
+            className="relative bg-cream w-full max-w-6xl max-h-[90vh] opulent-shadow rounded-sm flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden"
           >
-            <button 
+            <button
               onClick={onClose}
-              className="absolute top-6 right-6 z-10 p-2 bg-ink text-white hover:bg-gold hover:text-ink transition-colors"
+              className="absolute top-4 right-4 z-10 p-2 bg-ink text-white hover:bg-gold hover:text-ink transition-colors"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
 
             {/* Left: Image */}
-            <div className="lg:w-1/2 h-[400px] lg:h-auto">
-              <img 
-                src={horse.image} 
-                alt={horse.name} 
+            <div className="lg:w-1/2 h-[55vw] max-h-[320px] lg:max-h-none lg:h-auto shrink-0">
+              <img
+                src={horse.image}
+                alt={horse.name}
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
             </div>
 
             {/* Right: Details */}
-            <div className="lg:w-1/2 p-10 md:p-14 overflow-y-auto flex flex-col">
+            <div className="lg:w-1/2 p-7 md:p-10 lg:p-14 lg:overflow-y-auto flex flex-col">
 
               {/* Header */}
               <div className="mb-10">
@@ -543,13 +543,13 @@ const HorseCard = ({ horse, index, onOpenPedigree }: { horse: Horse, index: numb
         referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 bg-leather/0 group-hover:bg-leather/10 transition-colors duration-500"></div>
-      <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 bg-gradient-to-t from-ink/80 to-transparent">
-        <button 
+      <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-0 opacity-100 sm:translate-y-4 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 transition-all duration-500 bg-gradient-to-t from-ink/80 to-transparent">
+        <button
           onClick={(e) => {
             e.stopPropagation();
             onOpenPedigree(horse);
           }}
-          className="w-full bg-white text-ink py-4 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-gold transition-colors"
+          className="w-full bg-white text-ink py-3 sm:py-4 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-gold transition-colors"
         >
           Purebred Profile
         </button>
