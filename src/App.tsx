@@ -215,7 +215,7 @@ const VideoSection = () => {
           transition={{ duration: 1.5, delay: 1 }}
           className="text-white/40 text-xs uppercase tracking-[0.4em] mt-14"
         >
-          San Antonio, Texas · Reign Valley Estate
+          San Antonio, Texas · Rain Valley Estate
         </motion.p>
       </div>
 
@@ -282,7 +282,7 @@ const Hero = () => {
           transition={{ duration: 1.5, delay: 1 }}
           className="text-white/70 text-sm md:text-base font-light tracking-[0.4em] uppercase mb-12 max-w-2xl mx-auto"
         >
-          Elite Sales & Genetics at Reign Valley Estate
+          Elite Sales & Genetics at Rain Valley Estate
         </motion.p>
 
         <motion.div
@@ -347,7 +347,7 @@ const About = () => {
               </h2>
               <div className="space-y-8 text-ink/70 leading-relaxed font-light text-lg">
                 <p>
-                  AZ Equuz at Reign Valley Ranch is the pinnacle of equine excellence. We specialize in the acquisition, maintenance, and elite breeding of the world's finest Spanish and Arabian bloodlines.
+                  AZ Equuz at Rain Valley Ranch is the pinnacle of equine excellence. We specialize in the acquisition, maintenance, and elite breeding of the world's finest Spanish and Arabian bloodlines.
                 </p>
                 <p>
                   Our mission is to preserve the majesty of these noble breeds while advancing the future of the sport through our world-class genetics program and state-of-the-art stallion station.
@@ -684,9 +684,12 @@ const Genetics = () => {
               </div>
             </div>
             
-            <button className="mt-16 bg-gold text-ink px-12 py-5 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-white transition-all duration-500">
-              Download Genetics Catalog
-            </button>
+            <Link
+              to="/genetics-catalog"
+              className="mt-16 inline-block bg-gold text-ink px-12 py-5 text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-white transition-all duration-500"
+            >
+              View Genetics Catalog
+            </Link>
           </motion.div>
           
           <motion.div 
@@ -1290,7 +1293,7 @@ const Footer = () => {
           <div className="lg:col-span-4">
             <span className="text-4xl font-serif tracking-[0.3em] uppercase mb-10 block">AZ Equuz</span>
             <p className="text-white/40 font-light leading-relaxed mb-12 text-lg">
-              Elite sales, maintenance, and genetics at Reign Valley Ranch. Preserving the legacy of Spanish and Arabian excellence.
+              Elite sales, maintenance, and genetics at Rain Valley Ranch. Preserving the legacy of Spanish and Arabian excellence.
             </p>
             <div className="flex space-x-8">
               <a href="#" className="text-white/30 hover:text-gold transition-all transform hover:-translate-y-1"><Instagram size={24} /></a>
@@ -1304,7 +1307,7 @@ const Footer = () => {
             <ul className="space-y-6 text-white/50 font-light">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-4 text-gold shrink-0" />
-                <span className="text-sm leading-relaxed">San Antonio, TX<br />Reign Valley Ranch Estate</span>
+                <span className="text-sm leading-relaxed">San Antonio, TX<br />Rain Valley Ranch Estate</span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-4 text-gold shrink-0" />
@@ -1348,7 +1351,7 @@ const Footer = () => {
 
         <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-[9px] uppercase tracking-[0.4em] text-white/20">
-            © 2026 AZ Equuz at Reign Valley Ranch. All Rights Reserved.
+            © 2026 AZ Equuz at Rain Valley Ranch. All Rights Reserved.
           </p>
           <div className="flex space-x-12 text-[9px] uppercase tracking-[0.4em] text-white/20">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
@@ -1485,7 +1488,7 @@ const Loader = () => {
           transition={{ duration: 1, delay: 1.3 }}
           className="text-cream text-[9px] uppercase tracking-[0.8em] font-light"
         >
-          Reign Valley Ranch · San Antonio, Texas
+          Rain Valley Ranch · San Antonio, Texas
         </motion.p>
       </div>
 
@@ -1512,7 +1515,7 @@ const galleryItems = [
   { id: 7, src: "https://images.pexels.com/photos/1369493/pexels-photo-1369493.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Elegant mare portrait", caption: "Elegance Defined", tag: "Mares", cols: 1, rows: 1 },
   { id: 8, src: "https://images.pexels.com/photos/52500/horse-herd-fog-nature-52500.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Herd in morning fog", caption: "Dawn Herd", tag: "Estate", cols: 2, rows: 1 },
   { id: 9, src: "https://images.pexels.com/photos/1805164/pexels-photo-1805164.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "P.R.E. horse close up", caption: "Nobility", tag: "Portraits", cols: 1, rows: 2 },
-  { id: 10, src: "https://images.pexels.com/photos/1650750/pexels-photo-1650750.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "White horse in green field", caption: "Summer at Reign Valley", tag: "Estate", cols: 1, rows: 1 },
+  { id: 10, src: "https://images.pexels.com/photos/1650750/pexels-photo-1650750.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "White horse in green field", caption: "Summer at Rain Valley", tag: "Estate", cols: 1, rows: 1 },
   { id: 11, src: "https://images.pexels.com/photos/1559116/pexels-photo-1559116.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Close-up horse portrait", caption: "Soulful Gaze", tag: "Portraits", cols: 1, rows: 1 },
   { id: 12, src: "https://images.pexels.com/photos/2123375/pexels-photo-2123375.jpeg?auto=compress&cs=tinysrgb&w=1400", alt: "Two horses together", caption: "Companions", tag: "Mares", cols: 2, rows: 1 },
 ];
@@ -1566,7 +1569,7 @@ const GalleryPage = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-gold text-[10px] uppercase tracking-[0.6em] font-bold mb-4 block"
           >
-            Mater Christi · Reign Valley Ranch
+            Mater Christi · Rain Valley Ranch
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -1713,6 +1716,131 @@ const GalleryPage = () => {
   );
 };
 
+const catalogHorses = [
+  {
+    name: "Ordago", gender: "Stallion", birthDate: "25 Mar 2019", coat: "Torda (Grey)",
+    ueln: "724015190347862", igg: "116.36", offspringCount: 22,
+    image: "https://www.dropbox.com/scl/fi/70gskkg4zhlnssgx1i3sk/Ordago-compressed.jpg?rlkey=squxs6kf94znr1bce8ykrzd94&st=f5q55hu8&raw=1",
+    registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?CEJ=VY3rRW2aO1IJOknx3ZsjWQ==",
+    description: "Joven Reproductor Recomendado with IGG 116.36 — one of the highest indices in his generation — and 22 registered offspring cementing his status as a premier P.R.E. sire.",
+  },
+  {
+    name: "Presencia", gender: "Mare", birthDate: "12 Feb 2020", coat: "Torda (Grey)",
+    ueln: "724015200357033", igg: null, offspringCount: 0,
+    image: "https://www.dropbox.com/scl/fi/ccktrizmcvvvr18qpq8f3/presencia-compressed.jpg?rlkey=nij7or4fsj5zsan5rmtrn9yef&st=wt6ynrrf&raw=1",
+    registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?ID=2bvfgWbPlPA=",
+    description: "A young P.R.E. mare of exquisite Torda coat bred by Mater Christi, carrying fully documented bloodlines from Ferrer Rovira S.L. and Miguel Granda Losada.",
+  },
+  {
+    name: "Osadia", gender: "Mare", birthDate: "06 Mar 2019", coat: "Torda (Grey)",
+    ueln: "724015190347868", igg: "103.42", offspringCount: 2,
+    image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=v207uxjk&raw=1",
+    registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?CEJ=VY3rRW2aO1ILhXU+qrlXRg==",
+    description: "A bold and elegant mare sired by the celebrated Juramento Mater. With IGG 103.42 and two registered offspring building a legacy of her own.",
+  },
+  {
+    name: "Oligarca", gender: "Stallion", birthDate: "16 Apr 2019", coat: "Torda (Grey)",
+    ueln: "724015190348252", igg: "103.42", offspringCount: 0,
+    image: "https://images.pexels.com/photos/1996335/pexels-photo-1996335.jpeg?auto=compress&cs=tinysrgb&w=800",
+    registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?CEJ=VY3rRW2aO1IG905XAp2deQ==",
+    description: "A bold P.R.E. stallion bred by Mater Christi. Carries deep bloodlines from three of Spain's most prestigious yeguadas with a Genetic Index of 103.42.",
+  },
+];
+
+const GeneticsCatalogPage = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+  return (
+    <div className="min-h-screen bg-ink text-white pt-40 pb-32 px-8">
+      {/* Header */}
+      <div className="max-w-[1400px] mx-auto mb-20">
+        <motion.div {...fadeIn} className="flex items-center gap-6 mb-8">
+          <div className="w-12 h-[1px] bg-gold/60" />
+          <span className="text-gold text-[10px] uppercase tracking-[0.5em] font-bold">ANCCE · LGANCCE Registry</span>
+          <div className="w-12 h-[1px] bg-gold/60" />
+        </motion.div>
+        <motion.h1 {...fadeIn} className="text-5xl md:text-7xl font-serif leading-tight mb-6">
+          Genetics <span className="italic font-display font-light text-gold">Catalog</span>
+        </motion.h1>
+        <motion.p {...fadeIn} className="text-white/40 font-light text-base max-w-xl leading-relaxed">
+          Select any horse to view their full genealogical record in the official LGANCCE Pura Raza Española database.
+        </motion.p>
+      </div>
+
+      {/* Horse grid */}
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+        {catalogHorses.map((horse, i) => (
+          <motion.a
+            key={horse.name}
+            href={horse.registryUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 1, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="group relative flex flex-col overflow-hidden border border-white/10 hover:border-gold/40 transition-all duration-700 cursor-pointer"
+          >
+            {/* Image */}
+            <div className="aspect-[16/9] overflow-hidden relative">
+              <img
+                src={horse.image}
+                alt={horse.name}
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
+              {/* Gender badge */}
+              <div className="absolute top-4 right-4 bg-ink/80 backdrop-blur-sm border border-gold/30 px-3 py-1">
+                <span className="text-gold text-[9px] uppercase tracking-[0.4em]">{horse.gender}</span>
+              </div>
+            </div>
+
+            {/* Info */}
+            <div className="p-8 flex flex-col gap-6 bg-ink flex-1">
+              <div>
+                <h2 className="text-3xl font-serif mb-1">{horse.name}</h2>
+                <p className="text-white/30 text-[10px] uppercase tracking-[0.4em]">Pura Raza Española · {horse.coat}</p>
+              </div>
+
+              {/* Stats row */}
+              <div className="flex gap-8 border-t border-white/10 pt-6">
+                <div>
+                  <p className="text-white/30 text-[9px] uppercase tracking-[0.3em] mb-1">Born</p>
+                  <p className="text-white text-sm font-light">{horse.birthDate}</p>
+                </div>
+                {horse.igg && (
+                  <div>
+                    <p className="text-white/30 text-[9px] uppercase tracking-[0.3em] mb-1">IGG Index</p>
+                    <p className="text-gold text-sm font-semibold">{horse.igg}</p>
+                  </div>
+                )}
+                <div>
+                  <p className="text-white/30 text-[9px] uppercase tracking-[0.3em] mb-1">Offspring</p>
+                  <p className="text-white text-sm font-light">{horse.offspringCount}</p>
+                </div>
+                <div>
+                  <p className="text-white/30 text-[9px] uppercase tracking-[0.3em] mb-1">UELN</p>
+                  <p className="text-white/60 text-[11px] font-mono">{horse.ueln}</p>
+                </div>
+              </div>
+
+              <p className="text-white/50 text-sm font-light leading-relaxed">{horse.description}</p>
+
+              {/* CTA */}
+              <div className="flex items-center gap-3 mt-auto pt-2 border-t border-white/10">
+                <span className="text-gold text-[10px] uppercase tracking-[0.4em] font-bold group-hover:tracking-[0.5em] transition-all duration-500">
+                  View in LGANCCE Database
+                </span>
+                <ArrowRight className="w-4 h-4 text-gold transition-transform duration-500 group-hover:translate-x-2" />
+              </div>
+            </div>
+          </motion.a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   const [loading, setLoading] = useState(true);
 
@@ -1737,6 +1865,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/horses" element={<HorsesPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/genetics-catalog" element={<GeneticsCatalogPage />} />
           </Routes>
         </main>
         <Footer />
