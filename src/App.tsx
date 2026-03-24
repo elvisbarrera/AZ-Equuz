@@ -744,7 +744,7 @@ const Horses = () => {
     {
       name: "Presencia",
       breed: "Pura Raza Española (P.R.E.)",
-      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=zm615i7h&raw=1",
+      image: "https://www.dropbox.com/scl/fi/ccktrizmcvvvr18qpq8f3/presencia-compressed.jpg?rlkey=nij7or4fsj5zsan5rmtrn9yef&st=wt6ynrrf&raw=1",
       age: "5 Years",
       gender: "Mare",
       height: "—",
@@ -765,7 +765,7 @@ const Horses = () => {
     {
       name: "Ordago",
       breed: "Pura Raza Española (P.R.E.)",
-      image: "https://images.pexels.com/photos/2088210/pexels-photo-2088210.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://www.dropbox.com/scl/fi/70gskkg4zhlnssgx1i3sk/Ordago-compressed.jpg?rlkey=squxs6kf94znr1bce8ykrzd94&st=f5q55hu8&raw=1",
       age: "6 Years",
       gender: "Stallion",
       height: "—",
@@ -789,7 +789,7 @@ const Horses = () => {
     {
       name: "Osadia",
       breed: "Pura Raza Española (P.R.E.)",
-      image: "https://www.dropbox.com/scl/fi/zx0e3syxcfdkg6bbdhzi8/main-3-compressed.jpg?rlkey=aykao1kmvcu2wgnieqcx7efy4&st=ukaxr0uk&raw=1",
+      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=v207uxjk&raw=1",
       age: "6 Years",
       gender: "Mare",
       height: "—",
@@ -884,7 +884,7 @@ const HorsesPage = () => {
     {
       name: "Presencia",
       breed: "Pura Raza Española (P.R.E.)",
-      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=zm615i7h&raw=1",
+      image: "https://www.dropbox.com/scl/fi/ccktrizmcvvvr18qpq8f3/presencia-compressed.jpg?rlkey=nij7or4fsj5zsan5rmtrn9yef&st=wt6ynrrf&raw=1",
       age: "5 Years",
       gender: "Mare",
       height: "—",
@@ -905,7 +905,7 @@ const HorsesPage = () => {
     {
       name: "Ordago",
       breed: "Pura Raza Española (P.R.E.)",
-      image: "https://images.pexels.com/photos/2088210/pexels-photo-2088210.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://www.dropbox.com/scl/fi/70gskkg4zhlnssgx1i3sk/Ordago-compressed.jpg?rlkey=squxs6kf94znr1bce8ykrzd94&st=f5q55hu8&raw=1",
       age: "6 Years",
       gender: "Stallion",
       height: "—",
@@ -929,7 +929,7 @@ const HorsesPage = () => {
     {
       name: "Osadia",
       breed: "Pura Raza Española (P.R.E.)",
-      image: "https://www.dropbox.com/scl/fi/zx0e3syxcfdkg6bbdhzi8/main-3-compressed.jpg?rlkey=aykao1kmvcu2wgnieqcx7efy4&st=ukaxr0uk&raw=1",
+      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=v207uxjk&raw=1",
       age: "6 Years",
       gender: "Mare",
       height: "—",
@@ -1027,7 +1027,7 @@ const Bloodlines = () => {
     {
       name: "Presencia", gender: "Mare", birthDate: "12 Feb 2020", coat: "Torda (Grey)",
       ueln: "724015200357033", igg: null, offspringCount: 0, offspring: [],
-      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=zm615i7h&raw=1",
+      image: "https://www.dropbox.com/scl/fi/ccktrizmcvvvr18qpq8f3/presencia-compressed.jpg?rlkey=nij7or4fsj5zsan5rmtrn9yef&st=wt6ynrrf&raw=1",
       registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?ID=2bvfgWbPlPA=",
       description: "A young P.R.E. mare of exquisite Torda coat bred by Mater Christi. She carries fully documented bloodlines from Ferrer Rovira S.L. and Miguel Granda Losada — two pillars of modern Spanish breeding.",
       pedigree: {
@@ -1043,7 +1043,7 @@ const Bloodlines = () => {
       name: "Ordago", gender: "Stallion", birthDate: "25 Mar 2019", coat: "Torda (Grey)",
       ueln: "724015190347862", igg: "116.36", offspringCount: 22,
       offspring: ["Aviador Fam", "Caramelo de Mimac", "Lunaria de Gredos III", "Almanzor de Borge", "Alba de Borge", "Al Andalus de Borge", "Tamiz Mater", "Tesón Mater", "Tinga Mater", "Vendetta Mater"],
-      image: "https://images.pexels.com/photos/2088210/pexels-photo-2088210.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "https://www.dropbox.com/scl/fi/70gskkg4zhlnssgx1i3sk/Ordago-compressed.jpg?rlkey=squxs6kf94znr1bce8ykrzd94&st=f5q55hu8&raw=1",
       registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?CEJ=VY3rRW2aO1IJOknx3ZsjWQ==",
       description: "The crown jewel of the collection. Joven Reproductor Recomendado with IGG 116.36 — one of the highest indices in his generation — and 22 registered offspring cementing his status as a premier P.R.E. sire.",
       pedigree: {
@@ -1059,7 +1059,7 @@ const Bloodlines = () => {
       name: "Osadia", gender: "Mare", birthDate: "06 Mar 2019", coat: "Torda (Grey)",
       ueln: "724015190347868", igg: "103.42", offspringCount: 2,
       offspring: ["Taranta Mater", "Vuelo Mater"],
-      image: "https://www.dropbox.com/scl/fi/zx0e3syxcfdkg6bbdhzi8/main-3-compressed.jpg?rlkey=aykao1kmvcu2wgnieqcx7efy4&st=ukaxr0uk&raw=1",
+      image: "https://www.dropbox.com/scl/fi/mrgbgc73yzlm3qzgv2rxt/main-5-compressed.jpg?rlkey=o053nu2k5t5l6ujpcwgxdbor0&st=v207uxjk&raw=1",
       registryUrl: "https://www.lgancce.com/lgpreancce/asp-publico/arbolGenealogicoPRE/ConsultarArbolGenealogicoPRE.aspx?CEJ=VY3rRW2aO1ILhXU+qrlXRg==",
       description: "A bold and elegant mare sired by the celebrated Juramento Mater. With IGG 103.42 and two registered offspring — Taranta Mater (2023) and Vuelo Mater (2024) — she is building a legacy of her own.",
       pedigree: {
