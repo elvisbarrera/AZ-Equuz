@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.lgancce.com)",
+      "Bash(npm install)",
+      "Bash(gh auth status)",
+      "Bash(brew install gh)"
+    ]
+  }
+}
